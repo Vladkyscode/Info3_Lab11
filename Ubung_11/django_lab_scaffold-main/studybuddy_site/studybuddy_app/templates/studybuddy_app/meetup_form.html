@@ -1,0 +1,13 @@
+{% extends "base.html" %}
+{% block title %}{{ title_text }} Meetup{% endblock %}
+{% block content %}
+
+<h1>{{ title_text }} Meetup</h1>
+<form action="{{ action_url }}" method="{{ http_method }}">
+    {% csrf_token %}
+    {{ meetup_form }}
+    <input type="submit" value="{{ button_text }}">
+    </div>
+</form>
+
+{% endblock content %}

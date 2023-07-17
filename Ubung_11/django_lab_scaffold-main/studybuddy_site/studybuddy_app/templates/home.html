@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+{% block title %}StudyBuddy{% endblock %}
+{% block content %}
+
+Django Scaffold Site & App for StudyBuddy
+
+<hr/>
+{% if user.is_authenticated %}
+  Hi {{ user.username }}! 
+ | <a href="{% url 'logout' %}">Log Out</a> | 
+  <a href="{% url 'login' %}">Log In as other user</a>
+{% else %}
+  <p>You are not logged in: 
+  <a href="{% url 'signup' %}">Sign up</a> | 
+  <a href="{% url 'login' %}">Log In</a> 
+    </p>
+  
+{% endif %}
+
+<hr/>
+<a href="/studybuddy/">StudyBuddy</a>
+<hr/>
+<a href="/admin">Admin Site</a>
+<hr/>
+
+
+
+{% endblock content %}

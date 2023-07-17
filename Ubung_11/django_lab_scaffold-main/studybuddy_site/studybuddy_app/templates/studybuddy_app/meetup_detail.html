@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+{% block title %}Meetup: {{ meetup.title }}{% endblock %}
+{% block content %}
+
+<h1>Meetup: {{ meetup.title }}</h1>
+<a href="{% url "studybuddy_app:meetup.list" %}">Index</a> |
+<a href="{% url "studybuddy_app:meetup.edit" meetup.id %}">Edit</a> | 
+<a href="{% url "studybuddy_app:meetup.delete" meetup.id %}">Delete</a>
+<hr/>
+<p>Title: {{ meetup.title }}</p>
+<p>Location: {{ meetup.location }}</p>
+<p>When?: {{ meetup.start_time }}</p>
+<p>Duration: {{ meetup.duration }}</p>
+<hr/>
+
+<a href="{% url 'studybuddy_app:meetup.rsvp' meetup.id %}" name="rsvp">Participate</a>
+
+<h2>Participants</h2>
+
+{% for participant in participants %}
+
+<p>
+    <a href="{% url 'studybuddy_app:user.detail' participant.id %}">
+        {{ participant.get_full_name }}({{ participant.get_username }})
+    </a>
+    {% if user in meetup.participants.all %}
+    <a href="{% url 'cancel_participation' meetup.id %}">Cancel Participation</a>
+{% else %}
+    <a href="{% url 'participate' meetup.id %}">Participate</a>
+{% endif %}
+</p>
+
+{% endfor %}
+
+
+{% endblock content %}

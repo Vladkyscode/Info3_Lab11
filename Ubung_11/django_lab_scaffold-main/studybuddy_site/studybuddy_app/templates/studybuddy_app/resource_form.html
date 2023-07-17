@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+
+{% extends 'base.html' %}
+
+{% block content %}
+  <h2>Edit Resource</h2>
+  <form method="post" action="{{ action_url }}">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">{{ button_text }}</button>
+  </form>
+{% endblock %}
+
+{% extends 'base.html' %}
+
+{% block content %}
+  <h2>Edit Resource</h2>
+  <form method="post" action="{% url 'studybuddy_app:resource_edit' resource.pk %}">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">Save</button>
+  </form>
+{% endblock %}
+
+</body>
+</html>
